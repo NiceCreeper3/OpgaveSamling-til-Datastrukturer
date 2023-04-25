@@ -10,17 +10,17 @@ namespace Algorithms
         /// </summary>
         /// <param name="ArrayCheck"></param>
         /// <returns> the Array is sorted </returns>
-        public static string IsTheArraySorted(int[] ArrayCheck)
+        public static bool IsTheArraySorted(int[] ArrayCheck)
         {
             // goves frue ithe nummber to check Exept fuor the last number
             // beckase if we reathe the last nummber then we know it is korekt
             for (int i = 0; i < ArrayCheck.Length - 1; i++)
             {
                 if (ArrayCheck[i] > ArrayCheck[i + 1])
-                    return "the array is not sorted";
+                    return false;
             }
 
-            return "the Array is sorted";
+            return true;
         }
 
         public static void FindNummberIndArray(int[] ArrayFind, int TheNummberTheUserWants)
@@ -28,8 +28,6 @@ namespace Algorithms
             bool TriningToFindNummber = true;
             int low = 0;
             int Hight = ArrayFind.Length - 1;
-
-
 
             // get det middel of a array
             while (TriningToFindNummber == true)
@@ -39,6 +37,8 @@ namespace Algorithms
 
                 if (ArrayFind[mid] == TheNummberTheUserWants)
                 {
+                    while (ArrayFind[mid - 1] == TheNummberTheUserWants)
+                        mid--;
                     Console.WriteLine("you nummber: " + ArrayFind[mid] + " is ind Colume: " + mid);
                     TriningToFindNummber = false;
 
@@ -54,6 +54,66 @@ namespace Algorithms
                 else
                     Hight = mid - 1;
             }
+        }
+
+
+        public static void InsertionSort(int[] values)
+        {
+            for (int sorted = 1; sorted < values.Length; sorted++) // hvilken plads er vi nået til 
+            {
+                int kandidat = values[sorted];
+                bool flag = false;
+                for (int i = sorted - 1; i >= 0 && flag == false;)
+                {
+                    if (kandidat < values[i])
+                    {
+                        values[i + 1] = values[i];
+                        i--;
+                        values[i + 1] = kandidat;
+                    }
+                    else flag = true;
+                }
+                /*Console.WriteLine();
+                foreach (int e in Elements) 
+                { 
+                    Console.Write(e + " "); 
+                }*/
+            }
+        }
+
+        public static int LinerSøgning(int[] ArrayFind, int TheNummberTheUserWants)
+        {
+            foreach (int a in ArrayFind)
+            {
+                if (a == TheNummberTheUserWants)
+                    return a;
+                else if (a > TheNummberTheUserWants)
+                    return -1;
+
+            }
+            return -1;
+        }
+
+        public static void BubbleSort(int[] values)
+        {
+            int n = values.Length;
+            for (int sorted = 0; sorted < n - 1; sorted++)
+            {
+                for (int i = 0; i < n - sorted - 1 /*&& flag == false*/; i++)
+                {
+                    if (values[i + 1] < values[i])
+                    {
+                        Swap(i + 1, i, values);
+                    }
+                }
+            }
+        }
+
+        static void Swap(int a, int b, int[] values)
+        {
+            int temp = values[b];
+            values[b] = values[a];
+            values[a] = temp;
         }
 
     }
