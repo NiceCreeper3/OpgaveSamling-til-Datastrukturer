@@ -101,7 +101,7 @@ namespace DataStrugOp3
 
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
-            Class1.InsertionSort(currArray);
+            Class1.MergeSort(currArray);
             stopWatch.Stop();
 
 
