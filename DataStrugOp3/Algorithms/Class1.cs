@@ -55,8 +55,20 @@ namespace Algorithms
                     Hight = mid - 1;
             }
         }
+        public static int LinerSøgning(int[] ArrayFind, int TheNummberTheUserWants)
+        {
+            foreach (int a in ArrayFind)
+            {
+                if (a == TheNummberTheUserWants)
+                    return a;
+                else if (a > TheNummberTheUserWants)
+                    return -1;
 
+            }
+            return -1;
+        }
 
+        #region Op 4
         public static void InsertionSort(int[] values)
         {
             for (int sorted = 1; sorted < values.Length; sorted++) // hvilken plads er vi nået til 
@@ -81,19 +93,6 @@ namespace Algorithms
             }
         }
 
-        public static int LinerSøgning(int[] ArrayFind, int TheNummberTheUserWants)
-        {
-            foreach (int a in ArrayFind)
-            {
-                if (a == TheNummberTheUserWants)
-                    return a;
-                else if (a > TheNummberTheUserWants)
-                    return -1;
-
-            }
-            return -1;
-        }
-
         public static void BubbleSort(int[] values)
         {
             int n = values.Length;
@@ -115,6 +114,7 @@ namespace Algorithms
             values[b] = values[a];
             values[a] = temp;
         }
+        #endregion
 
     }
 }

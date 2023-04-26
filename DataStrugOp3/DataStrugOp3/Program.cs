@@ -1,6 +1,7 @@
 ﻿using System;
 using DataStructures;
 using Algorithms;
+using System.Diagnostics;
 
 namespace DataStrugOp3
 {
@@ -39,30 +40,30 @@ namespace DataStrugOp3
         /// 4:	Lav efterprøvning af algoritmens tidkompleksitet med visuelle grafer, hvor n varierer fra 10 til 
         /// 1.000.000.000 i trin af 10, 100, 1.000, 10.000 osv.
         /// </Opgave>
+
+        // Arrays 
         static int[] Elements = { 1, 2, 3, 4, 5, 6, 15};
         static int[] Elements2 = { 1, 2, 5, 4, 5, 6, 15 };
+        static int[] Elements3 = new int[100000];
+
         static void Main(string[] args)
         {
+            int[] currArray = Elements3;
 
-            int[] Elements3 = new int[10];
             Random rnd = new Random();
 
-
-            for (int i = 0; i < Elements3.Length; i++)
-            {
-                Elements3[i ] = rnd.Next(1 , 100);
-            }
-
-
-            foreach ( int a in Elements3)
+            #region Op 3
+/*            foreach (int a in currArray)
             {
                 Console.Write(a + ", ");
-            }
+            }*/
             Console.WriteLine();
 
 
             #region is sorted?
-            bool sorted = Class1.IsTheArraySorted(Elements );
+            //bool sorted = Class1.IsTheArraySorted(currArray);
+            bool sorted = false;
+
 
             if (sorted)
                 Console.WriteLine("the Array is sorted");
@@ -76,7 +77,7 @@ namespace DataStrugOp3
                 Console.WriteLine("Write the nummber you want");
                 int UserChose = int.Parse(Console.ReadLine());
 
-                Class1.FindNummberIndArray(Elements, UserChose);
+                Class1.FindNummberIndArray(currArray, UserChose);
             }
             #endregion
 
@@ -86,10 +87,29 @@ namespace DataStrugOp3
                 Console.WriteLine("Write the nummber you want");
                 int UserChose = int.Parse(Console.ReadLine());
 
-                Class1.LinerSøgning(Elements, UserChose);
+                Class1.LinerSøgning(currArray, UserChose);
             }
 
             #endregion
+            #endregion
+
+
+            for (int i = 0; i < currArray.Length; i++)
+            {
+                currArray[i] = rnd.Next(1, 1000);
+            }
+
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            Class1.InsertionSort(currArray);
+            stopWatch.Stop();
+
+
+            TimeSpan ts = stopWatch.Elapsed;
+
+            string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
+            ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+            Console.WriteLine("RunTime " + elapsedTime);
 
 
         }
